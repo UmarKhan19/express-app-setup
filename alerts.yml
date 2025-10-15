@@ -1,0 +1,120 @@
+groups:
+  - name: backend_app_alerts
+    interval: 30s
+    rules:
+      # High Error Rate Alert
+      - alert: HighErrorRate
+        expr: |
+          (
+            sum(rate(backend_app_http_requests_total{status_code=~"5.."}[5m]))
+            /
+            sum(rate(backend_app_http_requests_total[5m]))
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'High error rate detected'
+          description: 'Error rate is above 5% (current value: {{ $value | humanizePercentage }})'
+
+      # Very High Error Rate Alert
+      - alert: VeryHighErrorRate
+        expr: |
+          (
+            sum(rate(backend_app_http_requests_total{status_code=~"5.."}[5m]))
+            /
+            sum(rate(backend_app_http_requests_total[5m]))
+          ) > 0.10
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: 'Very high error rate detected'
+          description: 'Error rate is above 10% (current value: {{ $value | humanizePercentage }})'
+
+      # High Response Time Alert
+      - alert: HighResponseTime
+        expr: |
+          histogram_quantile(0.95,
+            rate(backend_app_http_request_duration_seconds_bucket[5m])
+          ) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'High response time detected'
+          description: '95th percentile response time is above 1 second (current value: {{ $value }}s)'
+
+      # High Memory Usage Alert
+      - alert: HighMemoryUsage
+        expr: backend_app_memory_usage_bytes{type="heap_used"} > 1000000000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'High memory usage detected'
+          description: 'Memory usage is above 1GB (current value: {{ $value | humanize }})'
+
+      # Queue Job Failure Alert
+      - alert: HighQueueJobFailureRate
+        expr: |
+          (
+            sum(rate(backend_app_queue_jobs_failed_total[5m]))
+            /
+            sum(rate(backend_app_queue_jobs_total[5m]))
+          ) > 0.10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'High queue job failure rate'
+          description: 'Queue job failure rate is above 10% (current value: {{ $value | humanizePercentage }})'
+
+      # Database Query Slow Alert
+      - alert: SlowDatabaseQueries
+        expr: |
+          histogram_quantile(0.95,
+            rate(backend_app_db_query_duration_seconds_bucket[5m])
+          ) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'Slow database queries detected'
+          description: '95th percentile database query time is above 1 second (current value: {{ $value }}s)'
+
+      # Cache Miss Rate High
+      - alert: HighCacheMissRate
+        expr: |
+          (
+            sum(rate(backend_app_cache_misses_total[5m]))
+            /
+            (sum(rate(backend_app_cache_hits_total[5m])) + sum(rate(backend_app_cache_misses_total[5m])))
+          ) > 0.50
+        for: 10m
+        labels:
+          severity: info
+        annotations:
+          summary: 'High cache miss rate detected'
+          description: 'Cache miss rate is above 50% (current value: {{ $value | humanizePercentage }})'
+
+      # Service Down Alert
+      - alert: ServiceDown
+        expr: up{job="backend-app"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: 'Backend service is down'
+          description: 'The backend application is not responding to health checks'
+
+      # Kafka Message Processing Errors
+      - alert: HighKafkaErrorRate
+        expr: |
+          sum(rate(backend_app_kafka_message_errors_total[5m])) > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'High Kafka message error rate'
+          description: 'Kafka message error rate is high (current value: {{ $value }} errors/sec)'
