@@ -1,0 +1,365 @@
+{
+    "uid": "backend-app-overview",
+    "title": "Backend Application Overview",
+    "tags": [
+        "backend",
+        "nodejs",
+        "express"
+    ],
+    "timezone": "browser",
+    "schemaVersion": 38,
+    "version": 1,
+    "refresh": "10s",
+    "editable": true,
+    "panels": [
+        {
+            "id": 1,
+            "title": "HTTP Request Rate",
+            "type": "timeseries",
+            "gridPos": {
+                "x": 0,
+                "y": 0,
+                "w": 12,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "rate(backend_app_http_requests_total[5m])",
+                    "legendFormat": "{{method}} {{route}} {{status_code}}",
+                    "refId": "A"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "drawStyle": "line",
+                        "fillOpacity": 10
+                    },
+                    "unit": "reqps"
+                }
+            }
+        },
+        {
+            "id": 2,
+            "title": "HTTP Request Duration (95th percentile)",
+            "type": "timeseries",
+            "gridPos": {
+                "x": 12,
+                "y": 0,
+                "w": 12,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "histogram_quantile(0.95, rate(backend_app_http_request_duration_seconds_bucket[5m]))",
+                    "legendFormat": "{{method}} {{route}}",
+                    "refId": "A"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "drawStyle": "line",
+                        "fillOpacity": 10
+                    },
+                    "unit": "s"
+                }
+            }
+        },
+        {
+            "id": 3,
+            "title": "HTTP Status Codes",
+            "type": "piechart",
+            "gridPos": {
+                "x": 0,
+                "y": 8,
+                "w": 8,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "sum by (status_code) (backend_app_http_requests_total)",
+                    "legendFormat": "{{status_code}}",
+                    "refId": "A"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "API Errors",
+            "type": "timeseries",
+            "gridPos": {
+                "x": 8,
+                "y": 8,
+                "w": 8,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "rate(backend_app_api_errors_total[5m])",
+                    "legendFormat": "{{error_type}} - {{endpoint}}",
+                    "refId": "A"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "drawStyle": "line",
+                        "fillOpacity": 10
+                    },
+                    "unit": "ops"
+                }
+            }
+        },
+        {
+            "id": 5,
+            "title": "Memory Usage",
+            "type": "timeseries",
+            "gridPos": {
+                "x": 16,
+                "y": 8,
+                "w": 8,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "backend_app_memory_usage_bytes",
+                    "legendFormat": "{{type}}",
+                    "refId": "A"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "drawStyle": "line",
+                        "fillOpacity": 10
+                    },
+                    "unit": "bytes"
+                }
+            }
+        },
+        {
+            "id": 6,
+            "title": "Database Query Duration (95th percentile)",
+            "type": "timeseries",
+            "gridPos": {
+                "x": 0,
+                "y": 16,
+                "w": 12,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "histogram_quantile(0.95, rate(backend_app_db_query_duration_seconds_bucket[5m]))",
+                    "legendFormat": "{{operation}} - {{collection}}",
+                    "refId": "A"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "drawStyle": "line",
+                        "fillOpacity": 10
+                    },
+                    "unit": "s"
+                }
+            }
+        },
+        {
+            "id": 7,
+            "title": "Cache Hit/Miss Ratio",
+            "type": "timeseries",
+            "gridPos": {
+                "x": 12,
+                "y": 16,
+                "w": 12,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "rate(backend_app_cache_hits_total[5m])",
+                    "legendFormat": "Hits - {{operation}}",
+                    "refId": "A"
+                },
+                {
+                    "expr": "rate(backend_app_cache_misses_total[5m])",
+                    "legendFormat": "Misses - {{operation}}",
+                    "refId": "B"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "drawStyle": "line",
+                        "fillOpacity": 10
+                    },
+                    "unit": "ops"
+                }
+            }
+        },
+        {
+            "id": 8,
+            "title": "Queue Jobs Status",
+            "type": "timeseries",
+            "gridPos": {
+                "x": 0,
+                "y": 24,
+                "w": 12,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "rate(backend_app_queue_jobs_total[5m])",
+                    "legendFormat": "{{queue}} - {{status}}",
+                    "refId": "A"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "drawStyle": "line",
+                        "fillOpacity": 10
+                    },
+                    "unit": "ops"
+                }
+            }
+        },
+        {
+            "id": 9,
+            "title": "Queue Jobs Active",
+            "type": "gauge",
+            "gridPos": {
+                "x": 12,
+                "y": 24,
+                "w": 6,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "backend_app_queue_jobs_active",
+                    "legendFormat": "{{queue}}",
+                    "refId": "A"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "title": "Queue Job Failures",
+            "type": "stat",
+            "gridPos": {
+                "x": 18,
+                "y": 24,
+                "w": 6,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "sum(backend_app_queue_jobs_failed_total)",
+                    "refId": "A"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "title": "Kafka Messages Produced",
+            "type": "timeseries",
+            "gridPos": {
+                "x": 0,
+                "y": 32,
+                "w": 12,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "rate(backend_app_kafka_messages_produced_total[5m])",
+                    "legendFormat": "{{topic}}",
+                    "refId": "A"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "drawStyle": "line",
+                        "fillOpacity": 10
+                    },
+                    "unit": "ops"
+                }
+            }
+        },
+        {
+            "id": 12,
+            "title": "Kafka Messages Consumed",
+            "type": "timeseries",
+            "gridPos": {
+                "x": 12,
+                "y": 32,
+                "w": 12,
+                "h": 8
+            },
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "expr": "rate(backend_app_kafka_messages_consumed_total[5m])",
+                    "legendFormat": "{{topic}} - {{consumer_group}}",
+                    "refId": "A"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "drawStyle": "line",
+                        "fillOpacity": 10
+                    },
+                    "unit": "ops"
+                }
+            }
+        }
+    ]
+}
