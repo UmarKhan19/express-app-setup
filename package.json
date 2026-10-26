@@ -1,7 +1,7 @@
 {
     "name": "backend-part-2",
     "version": "1.0.0",
-    "description": "Production-grade Express.js backend with TypeScript and MongoDB",
+    "description": "TypeScript and Express infrastructure starter for local development",
     "main": "dist/server.js",
     "scripts": {
         "dev": "tsx watch --import ./src/instrumentation.ts src/server.ts",

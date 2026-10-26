@@ -15,23 +15,22 @@ This document provides a high-level overview of the system architecture, core pr
 
 ## System Overview
 
-This is a **production-grade, enterprise-ready Express.js backend** built with TypeScript, featuring:
+This is a **TypeScript/Express infrastructure starter for local development**. Its source includes:
 
-- **Clean Architecture** with clear separation of concerns
+- **Layered organization** across routes, controllers, services, repositories, and models
 - **Event-Driven Architecture** using Kafka for inter-service communication
 - **Asynchronous Job Processing** with BullMQ for background tasks
-- **Comprehensive Observability** with metrics, logging, and distributed tracing
-- **Scalable Infrastructure** designed for horizontal scaling
+- **Observability integrations** for metrics, logging, and distributed tracing
+- **Local infrastructure examples** for a database, cache, queue, and message broker
 
 ### Key Characteristics
 
-- ✅ **Type-Safe**: Full TypeScript with strict mode
-- ✅ **Modular**: Feature-based folder structure
-- ✅ **Testable**: Dependency injection and interface-based design
-- ✅ **Maintainable**: Base classes, design patterns, and consistent structure
-- ✅ **Observable**: Built-in metrics, logs, and traces
-- ✅ **Resilient**: Graceful degradation, retries, and error handling
-- ✅ **Scalable**: Stateless design, caching, and message queuing
+- **TypeScript**: Strict compiler configuration
+- **Feature folders**: User feature separated into modules
+- **Interface-based design**: No test suite is present in the repository.
+- **Base classes and shared utilities**: Common patterns used by the source
+- **Instrumentation code**: Metrics, logs, and traces are configured in source
+- **Runtime behavior, production security, resilience, and scaling have not been verified.** User and administration routes currently have no authentication or authorization middleware.
 
 ## Architecture Style
 

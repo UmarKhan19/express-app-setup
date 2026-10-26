@@ -6,7 +6,7 @@
 
 ### What is this project?
 
-A scalable backend application built with Node.js, Express, TypeScript, MongoDB, Redis, and Kafka, following clean architecture principles.
+A TypeScript/Express starter for local development. It includes MongoDB-backed user routes and optional Redis, BullMQ, and Kafka integrations. It has no test suite, and production readiness has not been established.
 
 ### What technologies are used?
 
@@ -35,11 +35,7 @@ See [Coding Standards](../development/CODING_STANDARDS.md).
 
 ### How do I run tests?
 
-```bash
-npm test
-npm run test:watch
-npm run test:coverage
-```
+There are no test files or test scripts in the repository.
 
 ### How do I debug the application?
 
