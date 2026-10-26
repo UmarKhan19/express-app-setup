@@ -188,7 +188,7 @@ Typical resource consumption:
 
 ### Development
 
-- The local Compose configuration does not set service authentication
+- The stack uses local-development defaults, including a configured Grafana login, and has not been hardened for production.
 - Ports are published on the host; actual reachability depends on host networking and firewall rules
 - MailDev for email testing
 
