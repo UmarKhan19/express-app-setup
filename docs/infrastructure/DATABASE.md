@@ -521,6 +521,8 @@ app.use(mongoSanitize());
 
 ### Password Hashing Example
 
+This is an illustrative example only. Password hashing is not implemented in the current user feature, and `bcrypt` is not a project dependency.
+
 ```typescript
 // Pre-save hook for password hashing
 userSchema.pre('save', async function (next) {
@@ -639,4 +641,4 @@ for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
 
 ---
 
-**Next**: [Cache Guide](./CACHE.md) →
+**Next**: [Infrastructure Overview](./README.md) →

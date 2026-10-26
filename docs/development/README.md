@@ -225,8 +225,8 @@ export class UserRepository extends BaseRepository<IUser> {
 ```bash
 # Development
 npm run dev              # Start dev server with hot reload
-npm run build            # Build for production
-npm run start            # Start production server
+npm run build            # Compile TypeScript; runtime startup is unverified
+npm run start            # Start compiled server; runtime startup is unverified
 
 # Code Quality
 npm run lint             # Check code style
@@ -316,7 +316,7 @@ For API testing:
 
 ## Testing
 
-See [Testing Guide](TESTING.md) for comprehensive testing strategies.
+The repository has no test suite or test scripts. The examples below are illustrative only.
 
 ### Quick Testing Examples
 
@@ -540,7 +540,7 @@ Each feature should have a README:
 
 ## Overview
 
-User management including registration, authentication, and profile.
+Example feature description only. The current user module does not implement authentication.
 
 ## Endpoints
 
@@ -561,7 +561,6 @@ User management including registration, authentication, and profile.
 - **[Coding Standards](CODING_STANDARDS.md)** - Detailed coding guidelines
 - **[Adding Features](ADDING_FEATURES.md)** - Step-by-step feature creation
 - **[Error Handling](ERROR_HANDLING.md)** - Error handling patterns
-- **[Testing Guide](TESTING.md)** - Testing strategies
 - **[Architecture](../architecture/ARCHITECTURE.md)** - System architecture
 
 ## Getting Help

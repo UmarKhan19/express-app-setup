@@ -2,6 +2,8 @@
 
 > **Horizontal and vertical scaling strategies**
 
+> The configurations below are generic examples, not deployment assets for this repository. The application has not been run or tested across multiple instances; the presence of Redis, BullMQ, Kafka, and tuning options does not establish horizontal scalability.
+
 ## Horizontal Scaling
 
 ### Load Balancing with Nginx

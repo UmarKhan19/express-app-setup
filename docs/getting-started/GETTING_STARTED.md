@@ -46,7 +46,7 @@ docker-compose --version
 
 ```bash
 git clone <repository-url>
-cd backend-part-2
+cd express-app-setup
 ```
 
 ### 2. Install Dependencies
@@ -64,31 +64,19 @@ This will install all required packages including:
 
 ### 3. Environment Configuration
 
-Copy the example environment file:
+There is no `.env.example` in the repository. Configuration reads `.env` if you create one; defaults include MongoDB at `mongodb://localhost:27017/backend`. Redis, queues, and Kafka are disabled by default. The development server requires MongoDB to be reachable.
 
 ```bash
-cp .env.example .env
-```
-
-Edit `.env` with your preferred settings. For local development, the defaults work fine:
-
-```bash
-# Minimal required configuration for local development
-NODE_ENV=development
+# Optional local overrides
 PORT=3000
-MONGODB_URI=mongodb://localhost:27017/backend-part-2
-
-# Enable all features
-REDIS_ENABLED=true
-QUEUE_ENABLED=true
-KAFKA_ENABLED=true
+MONGODB_URI=mongodb://localhost:27017/backend
 ```
 
 See [Configuration Reference](./CONFIGURATION.md) for detailed explanation of all variables.
 
 ### 4. Start Infrastructure Services
 
-Start all required services (MongoDB, Redis, Kafka, etc.) using Docker Compose:
+Start local dependency containers if needed. Only MongoDB is required by application startup; Redis, queues, and Kafka remain disabled unless enabled in configuration.
 
 ```bash
 # Option 1: Using Make (recommended)
@@ -128,7 +116,7 @@ docker exec -it backend-kafka kafka-broker-api-versions --bootstrap-server local
 npm run dev
 ```
 
-You should see:
+The source logs startup messages, but this setup has not been runtime-verified. Do not treat the following as a verified transcript:
 
 ```
 OpenTelemetry SDK started successfully
@@ -241,10 +229,10 @@ npm run dev
 # Build TypeScript
 npm run build
 
-# Run production build
+# Run compiled server (runtime startup is unverified)
 npm run start
 
-# Production mode with NODE_ENV=production
+# Set NODE_ENV=production (this does not make the app production-ready)
 npm run start:prod
 ```
 
@@ -347,7 +335,7 @@ docker exec -it backend-kafka kafka-console-consumer \
 
 ## 🎯 Next Steps
 
-Now that you have the application running:
+After you have independently confirmed local startup:
 
 1. **Explore the API**: Read [API Documentation](../api/README.md)
 2. **Understand Architecture**: See [Architecture Overview](../architecture/ARCHITECTURE.md)

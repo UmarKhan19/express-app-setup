@@ -73,10 +73,7 @@ Client Request → Controller → Service → Repository
 ### Core Services
 
 - **[Database (MongoDB)](./DATABASE.md)** - Data persistence, models, queries
-- **[Cache (Redis)](./CACHE.md)** - Caching strategies, TTL management
-- **[Queue (BullMQ)](./QUEUE.md)** - Background job processing
-- **[Event Streaming (Kafka)](./KAFKA.md)** - Event-driven architecture
-- **[Email Service](./EMAIL.md)** - Email provider abstraction
+- Redis, BullMQ, Kafka, and email source are described in this overview; separate service guides are not present.
 
 ### Service Dependencies
 
@@ -191,8 +188,8 @@ Typical resource consumption:
 
 ### Development
 
-- No authentication required
-- Services exposed on localhost
+- The stack uses local-development defaults, including a configured Grafana login, and has not been hardened for production.
+- Ports are published on the host; actual reachability depends on host networking and firewall rules
 - MailDev for email testing
 
 ### Production Recommendations
@@ -207,18 +204,9 @@ See [Security Guide](../guides/SECURITY.md) for details.
 
 ## 📈 Scaling
 
-### Horizontal Scaling
+The repository includes optional Redis, BullMQ, and Kafka integrations plus configurable MongoDB pool and worker-concurrency settings. Their presence does not establish shared-state behavior, distributed job guarantees, or horizontal scalability. No multi-instance deployment is configured or verified here.
 
-The application is designed for horizontal scaling:
-
-1. **Stateless**: No session state in application
-2. **Shared Cache**: Redis for distributed caching
-3. **Shared Queue**: BullMQ for distributed jobs
-4. **Event Streaming**: Kafka for decoupled communication
-
-### Vertical Scaling
-
-Adjust connection pools and concurrency:
+### Configuration examples
 
 ```bash
 # MongoDB connections
@@ -286,10 +274,7 @@ docker-compose up -d
 ## 📖 Further Reading
 
 - [Database Guide](./DATABASE.md) - MongoDB setup and patterns
-- [Cache Guide](./CACHE.md) - Redis caching strategies
-- [Queue System](./QUEUE.md) - Background job processing
-- [Kafka Guide](./KAFKA.md) - Event streaming
-- [Email Service](./EMAIL.md) - Email integration
+- [Architecture Overview](../architecture/ARCHITECTURE.md) - Source structure and integration boundaries
 
 ---
 

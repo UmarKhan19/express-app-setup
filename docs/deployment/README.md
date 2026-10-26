@@ -1,8 +1,10 @@
-# Deployment Guide
+# Generic deployment examples
 
-> **Deploy your application to production environments**
+> **Generic deployment patterns, not a verified path for this starter**
 
-This guide covers deployment strategies, configurations, and best practices for production deployments.
+This guide contains deployment patterns and sample configuration for reference.
+
+> These are generic deployment examples, not a verified deployment procedure for this repository. The Compose file contains local dependencies only; there is no API Dockerfile/service, test command, or migration script in the project. Production deployment and security have not been established.
 
 ## 📚 Table of Contents
 
@@ -16,10 +18,10 @@ This guide covers deployment strategies, configurations, and best practices for 
 
 ## Overview
 
-This application can be deployed using:
+Generic deployment approaches include:
 
 - **Docker Compose** - Simple, single-server deployments
-- **Kubernetes** - Scalable, orchestrated deployments
+- **Kubernetes** - Orchestrated deployments (example only; no manifests are included)
 - **Cloud Platforms** - AWS, GCP, Azure
 - **Platform as a Service** - Heroku, Railway, Render
 

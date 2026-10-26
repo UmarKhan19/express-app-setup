@@ -15,23 +15,22 @@ This document provides a high-level overview of the system architecture, core pr
 
 ## System Overview
 
-This is a **production-grade, enterprise-ready Express.js backend** built with TypeScript, featuring:
+This is a **TypeScript/Express infrastructure starter for local development**. Its source includes:
 
-- **Clean Architecture** with clear separation of concerns
+- **Layered organization** across routes, controllers, services, repositories, and models
 - **Event-Driven Architecture** using Kafka for inter-service communication
 - **Asynchronous Job Processing** with BullMQ for background tasks
-- **Comprehensive Observability** with metrics, logging, and distributed tracing
-- **Scalable Infrastructure** designed for horizontal scaling
+- **Observability integrations** for metrics, logging, and distributed tracing
+- **Local infrastructure examples** for a database, cache, queue, and message broker
 
 ### Key Characteristics
 
-- ✅ **Type-Safe**: Full TypeScript with strict mode
-- ✅ **Modular**: Feature-based folder structure
-- ✅ **Testable**: Dependency injection and interface-based design
-- ✅ **Maintainable**: Base classes, design patterns, and consistent structure
-- ✅ **Observable**: Built-in metrics, logs, and traces
-- ✅ **Resilient**: Graceful degradation, retries, and error handling
-- ✅ **Scalable**: Stateless design, caching, and message queuing
+- **TypeScript**: Strict compiler configuration
+- **Feature folders**: User feature separated into modules
+- **Interface-based design**: No test suite is present in the repository.
+- **Base classes and shared utilities**: Common patterns used by the source
+- **Instrumentation code**: Metrics, logs, and traces are configured in source
+- **Runtime behavior, production security, resilience, and scaling have not been verified.** User and administration routes currently have no authentication or authorization middleware.
 
 ## Architecture Style
 
@@ -54,8 +53,7 @@ The application follows a **4-layer architecture**:
 ### Supporting Patterns
 
 - **Event-Driven Architecture**: Kafka for asynchronous communication
-- **CQRS Light**: Separate read/write patterns where beneficial
-- **Microservices Ready**: Designed to be split into microservices
+- **CQRS and microservice decomposition**: Possible future design ideas, not implemented or verified in this starter
 
 ## Layered Architecture
 
@@ -419,7 +417,7 @@ features/
 - Easy to understand and navigate
 - Clear boundaries between features
 - Simple to add new features
-- Can be extracted into microservices
+- Microservice extraction would require separate design and implementation; it is not established by the current module layout
 
 ### Core Infrastructure
 
@@ -525,39 +523,13 @@ class UserRepository {
 // 12. Metrics recorded (latency, status code, etc.)
 ```
 
-## Scalability Considerations
+## Scaling and performance
 
-### Horizontal Scaling
-
-The application is designed for horizontal scaling:
-
-- **Stateless**: No session state in application memory
-- **Shared Cache**: Redis for distributed caching
-- **Message Queue**: BullMQ for distributed job processing
-- **Event Streaming**: Kafka for inter-service communication
-- **Load Balancer Ready**: Can run multiple instances
-
-### Vertical Scaling
-
-Resource limits are configurable:
-
-- MongoDB connection pool size
-- Redis connection pool
-- Worker concurrency
-- Kafka consumer threads
-
-### Performance Optimizations
-
-- **Caching**: Redis caching reduces database load
-- **Connection Pooling**: Reuse database connections
-- **Compression**: Response compression enabled
-- **Pagination**: Large result sets are paginated
-- **Indexes**: Database indexes for common queries
-- **Async Processing**: Long tasks moved to queues
+The source includes optional Redis caching, BullMQ workers, Kafka producers/consumers, MongoDB connection-pool settings, and HTTP compression. These integrations do not establish stateless operation, distributed job guarantees, load-balancer compatibility, or measured performance. Horizontal/vertical scaling behavior has not been tested; deployment topology and shared-state requirements would need separate design and verification.
 
 ## Monitoring & Observability
 
-Every layer is instrumented:
+Instrumentation source includes:
 
 - **HTTP Metrics**: Request count, latency, status codes
 - **Database Metrics**: Query duration, connection pool
@@ -570,12 +542,14 @@ See [Observability Overview](../observability/README.md) for details.
 
 ## Security Considerations
 
+The middleware listed below is present in source. It does not provide authentication or authorization; user, queue, and Kafka routes are mounted without those guards. The linked security guide contains examples, not implemented project features.
+
 - **Helmet**: Security headers
 - **CORS**: Cross-origin configuration
 - **Rate Limiting**: Prevent abuse
 - **Input Validation**: Joi schemas
 - **Sanitization**: Prevent NoSQL injection
-- **Error Handling**: No sensitive data in errors
+- **Error Handling**: Central error middleware (sensitive-data handling has not been audited here)
 
 See [Security Guide](../guides/SECURITY.md) for details.
 

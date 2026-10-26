@@ -43,7 +43,7 @@ We pledge to make participation in this project a harassment-free experience for
 ```bash
 # Fork on GitHub, then clone your fork
 git clone https://github.com/YOUR_USERNAME/backend-part-2.git
-cd backend-part-2
+cd express-app-setup
 ```
 
 ### 2. Set Up Development Environment
@@ -52,13 +52,7 @@ cd backend-part-2
 # Install dependencies
 npm install
 
-# Copy environment file
-cp .env.example .env
-
-# Start infrastructure
-make infra-up
-
-# Start development server
+# Ensure MongoDB is available at localhost:27017, then start the development server
 npm run dev
 ```
 
@@ -96,9 +90,9 @@ npm run format
 # Type check
 npm run type-check
 
-# Run tests (when available)
-npm test
 ```
+
+No test suite or test command is currently defined. `npm run dev` requires a reachable MongoDB instance; optional integrations are disabled by default.
 
 ### 3. Commit Your Changes
 
@@ -282,13 +276,9 @@ describe('UserService', () => {
 });
 ```
 
-### Running Tests
+### Tests
 
-```bash
-npm test              # Run all tests
-npm run test:watch    # Watch mode
-npm run test:coverage # Coverage report
-```
+This repository currently has no test files or test scripts.
 
 ## 📚 Documentation
 
