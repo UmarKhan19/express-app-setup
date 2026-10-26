@@ -21,18 +21,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- ✨ Production-grade Express.js backend with TypeScript
+- ✨ TypeScript Express starter with local-development integrations
 - 🗄️ MongoDB integration with Mongoose ODM
 - ⚡ Redis caching with configurable TTL strategies
 - 🔄 BullMQ job queue system for background processing
 - 📨 Kafka event streaming architecture
 - 📧 Email service with MailDev and Resend providers
-- 📊 Full observability stack (Prometheus, Grafana, Loki, Tempo)
+- 📊 Observability integrations/configuration (Prometheus, Grafana, Loki, Tempo)
 - 🏗️ Clean architecture with layered design
 - 🎯 Base classes for controllers, services, and repositories
-- 🔐 Security features (Helmet, CORS, rate limiting, input sanitization)
+- 🔐 HTTP middleware (Helmet, CORS, rate limiting, input sanitization; no authentication/authorization)
 - 📦 Feature-based folder structure with User module example
-- 🐳 Complete Docker Compose setup for all services
+- 🐳 Docker Compose configuration for local dependency services; no API container
 - 📚 Comprehensive documentation
 - 🛠️ Makefile for common development tasks
 - 🔍 Health check endpoints (/health, /liveness, /readiness)
@@ -94,14 +94,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date       | Description                                      |
 | ------- | ---------- | ------------------------------------------------ |
-| 1.0.0   | 2025-10-14 | Production-ready release with full observability |
+| 1.0.0   | 2025-10-14 | Local-development starter and integration examples |
 | 0.9.0   | 2025-10-10 | Initial development version                      |
 
 ## Upgrade Guide
 
 ### From 0.9.0 to 1.0.0
 
-This is the first production release with significant infrastructure changes.
+This release adds infrastructure integrations. Production readiness was not established.
 
 **Breaking Changes:**
 
@@ -110,15 +110,14 @@ This is the first production release with significant infrastructure changes.
 **New Requirements:**
 
 - Node.js >= 18.0.0
-- Docker Desktop for infrastructure services
+- Docker Compose for optional local infrastructure services
 
 **Migration Steps:**
 
 1. Update Node.js to version 18 or higher
 2. Install Docker Desktop
-3. Copy new environment variables from `.env.example`
-4. Start infrastructure services: `make infra-up`
-5. Run database migrations (if any)
+3. Set any needed variables from `docs/getting-started/CONFIGURATION.md`; there is no `.env.example`
+4. Start MongoDB separately or use the local Compose service
 
 **New Environment Variables:**
 

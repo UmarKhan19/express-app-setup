@@ -70,10 +70,10 @@ Startup instructions are unverified. The server requires MongoDB; the repository
 
 ### 🚀 Deployment
 
-- **[Deployment Guide](docs/deployment/README.md)** - Production deployment
-- **[Docker Guide](docs/deployment/DOCKER.md)** - Container orchestration
-- **[Environment Setup](docs/deployment/ENVIRONMENT.md)** - Production config
-- **[Scaling](docs/deployment/SCALING.md)** - Scaling strategies
+- **[Deployment examples](docs/deployment/README.md)** - Generic examples, not a verified deployment path
+- **[Docker examples](docs/deployment/DOCKER.md)** - Generic examples; no API image is defined
+- **[Environment examples](docs/deployment/ENVIRONMENT.md)** - Generic examples; source config is authoritative
+- **[Scaling](docs/deployment/SCALING.md)** - Generic strategies, not verified for this application
 
 ### 📖 Guides
 

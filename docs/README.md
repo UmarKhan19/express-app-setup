@@ -51,10 +51,6 @@ Deep dive into infrastructure components.
 
 - **[Infrastructure Overview](infrastructure/README.md)** - All services explained
 - **[Database Guide (MongoDB)](infrastructure/DATABASE.md)** - MongoDB setup, models, and queries
-- **[Cache Guide (Redis)](infrastructure/CACHE.md)** - Caching strategies
-- **[Queue System (BullMQ)](infrastructure/QUEUE.md)** - Background job processing
-- **[Event Streaming (Kafka)](infrastructure/KAFKA.md)** - Event-driven architecture
-- **[Email Service](infrastructure/EMAIL.md)** - Email provider integration
 
 ### 📈 Observability
 
@@ -77,12 +73,12 @@ Guides for developing new features.
 
 ### 🚀 Deployment
 
-Production deployment and operations.
+Generic deployment and operations examples; no production deployment is configured or verified for this starter.
 
-- **[Deployment Guide](deployment/README.md)** - Production deployment
-- **[Docker Guide](deployment/DOCKER.md)** - Container orchestration
-- **[Environment Setup](deployment/ENVIRONMENT.md)** - Production configuration
-- **[Scaling Guide](deployment/SCALING.md)** - Horizontal and vertical scaling
+- **[Deployment examples](deployment/README.md)** - Generic examples, not a verified deployment path
+- **[Docker examples](deployment/DOCKER.md)** - Generic container examples; no API Dockerfile is present
+- **[Environment examples](deployment/ENVIRONMENT.md)** - Generic examples; source config is authoritative
+- **[Scaling examples](deployment/SCALING.md)** - Horizontal/vertical strategies, not verified for this application
 
 ### 📖 Guides
 
@@ -141,7 +137,7 @@ This documentation is organized by audience and use case:
 **...configure services**
 → [Configuration Reference](getting-started/CONFIGURATION.md)
 
-**...deploy to production**
+**...read generic deployment examples (not a verified path for this starter)**
 → [Deployment Guide](deployment/README.md)
 
 **...fix an issue**

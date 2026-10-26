@@ -2,6 +2,8 @@
 
 > **Strategies to improve application performance**
 
+> Generic optimization examples only. No performance or multi-instance scaling measurements have been made for this starter.
+
 ## Database Optimization
 
 ### Indexes

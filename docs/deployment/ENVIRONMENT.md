@@ -1,8 +1,8 @@
 # Environment Configuration
 
-> **Complete environment variable reference**
+> **Generic environment examples; see the source configuration for supported variables**
 
-All environment variables used in the application with descriptions and defaults.
+This page contains generic deployment examples, not a complete reference to variables consumed by this application. In particular, the JWT and bcrypt variables below do not implement authentication or password hashing here. Check `src/config/index.ts` for variables the application reads.
 
 ## Application
 
@@ -59,7 +59,7 @@ TEMPO_URL=http://localhost:3200        # Tempo endpoint
 OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:3200/v1/traces  # OpenTelemetry endpoint
 ```
 
-## Security
+## Example security variables (not consumed by this application)
 
 ```bash
 JWT_SECRET=your-secret-key   # JWT signing key
@@ -85,9 +85,6 @@ CACHE_SESSION_TTL=86400     # Session cache TTL
 
 ## Environment Files
 
-- `.env` - Development (not in git)
-- `.env.example` - Template (in git)
-- `.env.production` - Production (not in git)
-- `.env.test` - Testing (not in git)
+The application loads `.env` if present. This repository does not include `.env.example`, `.env.production`, or `.env.test` files.
 
 See [Configuration Guide](../getting-started/CONFIGURATION.md) for detailed descriptions.

@@ -2,6 +2,8 @@
 
 > **Security best practices and implementation**
 
+> The snippets and checklist in this guide are generic examples, not implemented project features. This repository does not include JWT or bcrypt dependencies, and its API routes are not protected by authentication or authorization middleware. Do not deploy the starter for untrusted callers based on this guide alone.
+
 ## Authentication
 
 ### JWT Implementation

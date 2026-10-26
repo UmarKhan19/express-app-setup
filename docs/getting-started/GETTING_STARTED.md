@@ -229,10 +229,10 @@ npm run dev
 # Build TypeScript
 npm run build
 
-# Run production build
+# Run compiled server (runtime startup is unverified)
 npm run start
 
-# Production mode with NODE_ENV=production
+# Set NODE_ENV=production (this does not make the app production-ready)
 npm run start:prod
 ```
 

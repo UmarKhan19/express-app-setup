@@ -57,7 +57,7 @@ Separation of concerns:
 - Services: Business logic
 - Repositories: Data access
 
-Benefits: maintainability, testability, scalability.
+Potential benefits include maintainability and testability; this project has no test suite, and the structure alone does not establish scalability.
 
 ### Why use repositories?
 
@@ -212,11 +212,7 @@ Yes, for:
 
 ### How do I scale?
 
-Horizontal scaling:
-
-```bash
-docker-compose up --scale app=3
-```
+The repository does not configure or verify horizontal scaling. The local Compose file has no API service to scale; its scaling guide contains generic examples, not a tested deployment procedure.
 
 See [Scaling Guide](../deployment/SCALING.md).
 
@@ -247,19 +243,11 @@ Check Grafana dashboards
 
 ### How is authentication handled?
 
-JWT tokens:
-
-```typescript
-const token = jwt.sign({ userId }, JWT_SECRET, { expiresIn: '7d' });
-```
+Authentication is not implemented. The JWT example in the [Security Guide](SECURITY.md) is illustrative only; API routes currently have no authentication or authorization middleware.
 
 ### How are passwords stored?
 
-Hashed with bcrypt:
-
-```typescript
-const hash = await bcrypt.hash(password, 10);
-```
+Password hashing is not implemented. The bcrypt example in the [Security Guide](SECURITY.md) is illustrative only.
 
 ### How do I secure my API?
 

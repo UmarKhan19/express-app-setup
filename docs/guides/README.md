@@ -41,7 +41,7 @@ Quick answers to frequently asked questions:
 
 ### [🔒 Security Guide](SECURITY.md)
 
-Security best practices and implementations:
+Generic security examples and best practices. They are not implemented project features; user and administration routes currently have no authentication or authorization:
 
 - Authentication (JWT, password hashing)
 - Authorization (RBAC)

@@ -1,5 +1,7 @@
 # Docker Guide
 
+> Generic Docker examples only. This repository has no `Dockerfile` or `Dockerfile.dev`; its `docker-compose.yml` runs local dependencies, not the API. No image build or deployment path has been verified.
+
 > **Containerization with Docker and Docker Compose**
 
 Complete guide to Docker setup, configuration, and best practices.
@@ -12,11 +14,11 @@ Complete guide to Docker setup, configuration, and best practices.
 - [Production Configuration](#production-configuration)
 - [Best Practices](#best-practices)
 
-## Dockerfile
+## Example Dockerfiles (not present in this repository)
 
 ### Development Dockerfile
 
-File: `Dockerfile.dev`
+Example only: `Dockerfile.dev`
 
 ```dockerfile
 FROM node:18-alpine
@@ -41,7 +43,7 @@ CMD ["npm", "run", "dev"]
 
 ### Production Dockerfile
 
-File: `Dockerfile`
+Example only: `Dockerfile`
 
 ```dockerfile
 # Stage 1: Build
